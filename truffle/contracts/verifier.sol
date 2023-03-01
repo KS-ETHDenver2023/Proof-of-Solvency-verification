@@ -25,7 +25,7 @@ contract verifier {
     * @param seed the seed of the ring
     * @param value the value to check -> balance of each address must be >= value
     * @param message the message to verify the ring signature
-    * @param token the token we check the balance of
+    * @param token the token we check the balance of. Null address if we check the balance of the native token
     * @param addressesURI the URI of the addresses on IPFS
     * @param verifierData is a string which could be used id the verifier wants to be sure that the sbt has been minted for him (example : his address or somethings he asked the prover to write)
     */
@@ -37,9 +37,17 @@ contract verifier {
         // verify the ring signature
         require(_checkRingSig.Verify(addresses, tees, seed, message), "Invalid ring signature"); // c'est quoi tees et seed ?
         
-        for (uint i = 0; i < addresses.length; i+=2) {
-            require(IERC20(token).balanceOf(pointToAddress([addresses[i],addresses[i+1]])) >= value, "Insufficient balance in at least one address");
+        if(token == address(0)){
+            for (uint i = 0; i < addresses.length; i+=2) {
+                require(pointToAddress([addresses[i],addresses[i+1]]).balance >= value, "Insufficient balance in at least one address");
+            }
         }
+        else{
+            for (uint i = 0; i < addresses.length; i+=2) {
+                require(IERC20(token).balanceOf(pointToAddress([addresses[i],addresses[i+1]])) >= value, "Insufficient balance in at least one address");
+            }
+        }
+
         bytes32 root = buildRoot(addresses); // build merkle root to save in sbt
 
         // mint sbt
