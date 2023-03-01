@@ -54,7 +54,14 @@ module.exports = {
       network_id: '11155111', // Sepolia's id
       gas: 4465030,
       gasPrice: 100000000000,
-    }
+    },
+    matic: {
+      provider: () => new HDWalletProvider(MNEMONIC, `https://rpc-mumbai.maticvigil.com`),
+      network_id: 80001,
+      confirmations: 2,
+      timeoutBlocks: 200,
+      skipDryRun: true
+    },
 
     //ganache: {
     //  host: "127.0.0.1",     // Localhost (default: none)
