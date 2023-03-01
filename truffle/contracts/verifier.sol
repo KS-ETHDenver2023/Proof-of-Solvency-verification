@@ -5,7 +5,6 @@ pragma solidity ^0.8.17;
 import "./IERC20.sol";
 import "./ISBT.sol";
 import "./hackyAOS/IhackyAOS.sol";
-import "@openzeppelin/contracts/utils/Strings.sol";
 
 
 
@@ -32,11 +31,14 @@ contract verifier {
         require(addresses.length % 2 == 0, "addresses length must be even");
         uint256[] memory tees = new uint256[](addresses.length % 2);
         uint256 seed = 0;
+        // verify if the message is valid -> int(eth address of the msg.sender) == message
+        require(uint256(msg.sender) == message, "Invalid message");
+
         // verify the ring signature
         require(_checkRingSig.Verify(addresses, tees, seed, message), "Invalid ring signature"); // c'est quoi tees et seed ?
         
         for (uint i = 0; i < addresses.length; i+=2) {
-            require(IERC20(token).balanceOf(pointsToAddresses([addresses[i],addresses[i+1]])) >= value, "Insufficient balance in at least one address");
+            require(IERC20(token).balanceOf(pointToAddress([addresses[i],addresses[i+1]])) >= value, "Insufficient balance in at least one address");
         }
         bytes32 root = buildRoot(addresses); // build merkle root to save in sbt
 
@@ -96,34 +98,18 @@ contract verifier {
     }
 
 
+    /**
+    * @dev convert a point from SECP256k1 to an ethereum address
+    * @param points the point to convert -> [x,y]
+    */
+    function pointToAddress(uint256[2] memory points) public pure returns (address) {
+        // convert uint256[2] to hex string
+        bytes32 x = bytes32(points[0]);
+        bytes32 y = bytes32(points[1]);
+        bytes memory public_key = abi.encodePacked(x, y);
+        bytes32 hash = keccak256(public_key);
+        address ethereum_address = address(uint160(uint256(hash)));
 
-    function pointsToAddresses(uint256[2] memory points) public pure returns (address) {
-        string memory concat = "";
-        uint160 adresse;
-        
-        concat = string.concat(Strings.toString(points[0]), Strings.toString(points[1]));
-        // take the las 40 characters of the hash
-        // adresse = string.concat("0x", bytes32Last40(keccak256(abi.encodePacked(concat))));
-        adresse = bytes32ToUint160(keccak256(abi.encodePacked(concat)));
-        
-        return address(adresse);
+        return ethereum_address;
     }
-
-    function bytes32Last40(bytes32 _bytes32) public pure returns (string memory) {
-        bytes memory bytesArray = abi.encodePacked(type(uint256).max, _bytes32);
-        bytes memory last40Bytes = new bytes(40);
-        for (uint256 i = 0; i < 40; i++) {
-            last40Bytes[i] = bytesArray[bytesArray.length - 40 + i];
-        }
-        return string(last40Bytes);
-    }
-
-    function bytes32ToUint160(bytes32 _bytes) public pure returns (uint160) {
-        require(_bytes.length == 20, "Bytes32ToUint160: Invalid bytes length");
-        bytes20 bytes20Value = bytes20(_bytes);
-        return uint160(bytes20Value);
-    }
-
-    
-
 }
