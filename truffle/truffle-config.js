@@ -1,4 +1,5 @@
 const HDWalletProvider = require("@truffle/hdwallet-provider");
+require ('dotenv').config();
 const {MNEMONIC, API_KEY, ETHERSCAN} = process.env;
 /**
  * Use this file to configure your truffle project. It's seeded with some
@@ -43,6 +44,14 @@ module.exports = {
         return new HDWalletProvider(MNEMONIC, 'https://goerli.infura.io/v3/' + API_KEY)
       },
       network_id: '5', // Goerli's id
+      gas: 4465030,
+      gasPrice: 100000000000,
+    },
+    sepolia: {
+      provider: () => {
+        return new HDWalletProvider(MNEMONIC, 'https://sepolia.infura.io/v3/' + API_KEY)
+      },
+      network_id: '11155111', // Sepolia's id
       gas: 4465030,
       gasPrice: 100000000000,
     }

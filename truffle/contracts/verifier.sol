@@ -21,18 +21,18 @@ contract verifier {
     /**
     * @dev verify a ring signature, check balances of the provided value and mint an sbt if it is valid
     * @param addresses the addresses of the ring (length must be even) (addresses = [key1-x, key1-y, key2-x, key2-y, ..., keyN-x, keyN-y])
+    * @param tees the tees of the ring (length must be addresses.length/2) (tees = [tee1, tee2, ..., teeN])
+    * @param seed the seed of the ring
     * @param value the value to check -> balance of each address must be >= value
     * @param message the message to verify the ring signature
     * @param token the token we check the balance of
     * @param addressesURI the URI of the addresses on IPFS
     * @param verifierData is a string which could be used id the verifier wants to be sure that the sbt has been minted for him (example : his address or somethings he asked the prover to write)
     */
-    function verify(uint256[] memory addresses,uint256 value, uint256 message, address token, string memory addressesURI, string memory verifierData) public {
-        require(addresses.length % 2 == 0, "addresses length must be even");
-        uint256[] memory tees = new uint256[](addresses.length % 2);
-        uint256 seed = 0;
+    function verify(uint256[] memory addresses, uint256[] memory tees, uint256 seed, uint256 value, uint256 message, address token, string memory addressesURI, string memory verifierData) public {
+        require(addresses.length % 2 == 0 && tees.length == addresses.length / 2, "Invalid proof");
         // verify if the message is valid -> int(eth address of the msg.sender) == message
-        require(uint256(msg.sender) == message, "Invalid message");
+        require(uint160(msg.sender) == message, "Invalid message");
 
         // verify the ring signature
         require(_checkRingSig.Verify(addresses, tees, seed, message), "Invalid ring signature"); // c'est quoi tees et seed ?
@@ -93,7 +93,7 @@ contract verifier {
     * @param root the root to check
     * @param addresses the addresses to check the root against
     */
-    function verifyRoot(bytes32 root, uint256[] memory addresses) public view returns (bool) {
+    function verifyRoot(bytes32 root, uint256[] memory addresses) public pure returns (bool) {
         return buildRoot(addresses) == root;
     }
 
