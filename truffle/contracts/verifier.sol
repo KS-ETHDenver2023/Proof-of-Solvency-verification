@@ -18,6 +18,7 @@ contract verifier {
         _checkRingSig = IHackyAOSRing(checkRingSig);
     }
 
+
     /**
     * @dev verify a ring signature, check balances of the provided value and mint an sbt if it is valid
     * @param addresses the addresses of the ring (length must be even) (addresses = [key1-x, key1-y, key2-x, key2-y, ..., keyN-x, keyN-y])

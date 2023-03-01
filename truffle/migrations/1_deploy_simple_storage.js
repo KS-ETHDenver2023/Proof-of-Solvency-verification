@@ -1,4 +1,4 @@
 const SimpleStorage = artifacts.require("verifier");
 module.exports = function (deployer) {
-  deployer.deploy(SimpleStorage, "0xF0d7935a33b6126115D21Ec49403e4ce378A42Dd", "0xbEeB29483e810290B2610593B30C589672CCE3c8");
+  deployer.deploy(SimpleStorage, "0x26F31025D1c0A8a6F6Be75885fCD9A8713e911c7", "0x4be29fA49717486b44465eBbeFF4b7103A676BDe");
 };
