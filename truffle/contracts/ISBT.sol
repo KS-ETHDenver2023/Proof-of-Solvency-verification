@@ -17,6 +17,7 @@ interface ISBT is IERC721 {
     * @param tokenURI is the uri where we can get the addresses used to generate the proof (stored on ipfs)
     * @param merkleRoot is the merkle root of the addresses (to ensure that the addresses have not been modified)
     * @param signature is the zk proof generated in the frontend (which has been verified by the verifier)
+    * @param verifier is a string which could be used id the verifier wants to be sure that the sbt has been minted for him (example : his address or somethings he asked the prover to write)
     * mint a new sbt
     */
     function mint(address receiver, address token, string memory tokenURI, bytes32 merkleRoot, uint256 signature, string memory verifier) external;
