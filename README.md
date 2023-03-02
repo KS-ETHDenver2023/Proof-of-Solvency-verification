@@ -1,5 +1,5 @@
 
-# **Alice's ring - Ve**
+# **Alice's ring - Proof Verifier**
 
 This smart contract developed during the **ETHDenver 2023 hackathon** is a part of our solvency proof : This token proves that you have an x quantity of a specific token at a time t in an address without having to reveal it to the world.
 
