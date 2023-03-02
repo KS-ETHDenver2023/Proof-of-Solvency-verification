@@ -1,5 +1,5 @@
 
-# **Alice's ring - Proof Verifier**
+# **Alice's ring - Proof of Solvency verification**
 
 This smart contract developed during the **ETHDenver 2023 hackathon** is a part of our solvency proof : This token proves that you have an x quantity of a specific token at a time t in an address without having to reveal it to the world.
 
@@ -11,7 +11,7 @@ This smart contract developed during the **ETHDenver 2023 hackathon** is a part 
 
 1. Clone this repo 
 ```
-https://github.com/KS-ETHDenver2023/Proof-of-ownership-verification.git
+https://github.com/KS-ETHDenver2023/Proof-of-Solvency-verification.git
 ```
 2. Install npm
 ```
