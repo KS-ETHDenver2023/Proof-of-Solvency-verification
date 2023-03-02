@@ -11,7 +11,7 @@ This smart contract developed during the **ETHDenver 2023 hackathon** is a part 
 
 1. Clone this repo 
 ```
-https://github.com/KS-ETHDenver2023/Proof-of-Solvency-verification.git
+git clone https://github.com/KS-ETHDenver2023/Proof-of-Solvency-verification.git
 ```
 2. Install npm
 ```
