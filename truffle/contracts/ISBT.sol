@@ -4,60 +4,24 @@ import "@openzeppelin/contracts/token/ERC721/IERC721.sol";
 
 interface ISBT is IERC721 {
 
-    // get sbt data    
+    // get sbt data 
+
     /**
+    * @notice burn the sbt which id is tokenId
     * @param tokenId is the id of the sbt to burn
-    * burn an sbt
     */
     function burn(uint256 tokenId) external;
 
     /**
+    * @notice mint a sbt for the receiver
     * @param receiver is the address of the receiver of the sbt
     * @param token is the address of the token that is linked to the sbt
     * @param tokenURI is the uri where we can get the addresses used to generate the proof (stored on ipfs)
     * @param merkleRoot is the merkle root of the addresses (to ensure that the addresses have not been modified)
     * @param signature is the zk proof generated in the frontend (which has been verified by the verifier)
     * @param verifier is a string which could be used id the verifier wants to be sure that the sbt has been minted for him (example : his address or somethings he asked the prover to write)
-    * mint a new sbt
     */
     function mint(address receiver, address token, string memory tokenURI, bytes32 merkleRoot, uint256 signature, string memory verifier) external;
-
-    /**
-    * @param tokenId is the id of the sbt
-    * @return the value owned by the owner of the sbt when the proof has been generated
-    */
-    function getValue(uint256 tokenId) external view returns (uint256);
-
-    /**
-    * @param tokenId is the id of the sbt
-    * @return _merkleRoot associated to the sbt
-    */
-    function getMerkleRoot(uint256 tokenId) external view returns (bytes32);
-
-    /**
-    * @param tokenId is the id of the sbt
-    * @return _signature associated to the sbt
-    */
-    function getSignature(uint256 tokenId) external view returns (string memory);
-
-    /**
-    * @param tokenId is the id of the sbt
-    * @return _tokenURI associated to the sbt
-    */
-    function getTokenURI(uint256 tokenId) external view returns (string memory);
-
-    /**
-    * @param tokenId is the id of the sbt
-    * @return _timestamp associated to the sbt
-    */
-    function getTimestamp(uint256 tokenId) external view returns (uint256);
-
-    /**
-    * @param tokenId is the id of the sbt
-    * @return _tokenAddress associated to the sbt
-    */
-    function getTokenAddress(uint256 tokenId) external view returns (address);
-
 
     // admin functions
     /**
