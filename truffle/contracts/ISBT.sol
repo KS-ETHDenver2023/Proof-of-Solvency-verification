@@ -22,6 +22,11 @@ interface ISBT is IERC721 {
     */
     function mint(address receiver, address token, string memory tokenURI, bytes32 merkleRoot, uint256 signature, string memory verifier) external;
 
+    /**
+    * @param tokenId is the id of the sbt
+    * @return the value owned by the owner of the sbt when the proof has been generated
+    */
+    function getValue(uint256 tokenId) external view returns (uint256);
 
     /**
     * @param tokenId is the id of the sbt
