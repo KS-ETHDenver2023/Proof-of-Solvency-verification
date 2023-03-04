@@ -70,7 +70,7 @@ Benefits 🛰️:
 5. **Truffle for VS Code:** As developers we love using VS Code. The Truffle extension for VS Code allowed us to simplify our development process.
 6. **Documentation :** The infura and truffle documentation is very detailed and simply explains via concrete examples how to set up your project.
 
-## ** Smart contract architecture **📏
+## **Smart contract architecture 📏**
 
 The purpose of this smart contract is not only to verify the source and validity of the ring signature, but it also verifies that the user's secret address owns the tokens. If all the criteria are met, the smart contract mints a specific SBT for the prover's communication address.
  
