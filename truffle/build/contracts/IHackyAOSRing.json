@@ -50,14 +50,14 @@
     "absolutePath": "project:/contracts/hackyAOS/IhackyAOS.sol",
     "exportedSymbols": {
       "IHackyAOSRing": [
-        315
+        277
       ]
     },
-    "id": 316,
+    "id": 278,
     "nodeType": "SourceUnit",
     "nodes": [
       {
-        "id": 299,
+        "id": 261,
         "literals": [
           "solidity",
           "^",
@@ -74,9 +74,9 @@
         "contractDependencies": [],
         "contractKind": "interface",
         "fullyImplemented": false,
-        "id": 315,
+        "id": 277,
         "linearizedBaseContracts": [
-          315
+          277
         ],
         "name": "IHackyAOSRing",
         "nameLocation": "40:13:4",
@@ -84,7 +84,7 @@
         "nodes": [
           {
             "functionSelector": "3b40da01",
-            "id": 314,
+            "id": 276,
             "implemented": false,
             "kind": "function",
             "modifiers": [],
@@ -92,17 +92,17 @@
             "nameLocation": "70:6:4",
             "nodeType": "FunctionDefinition",
             "parameters": {
-              "id": 310,
+              "id": 272,
               "nodeType": "ParameterList",
               "parameters": [
                 {
                   "constant": false,
-                  "id": 302,
+                  "id": 264,
                   "mutability": "mutable",
                   "name": "addresses",
                   "nameLocation": "95:9:4",
                   "nodeType": "VariableDeclaration",
-                  "scope": 314,
+                  "scope": 276,
                   "src": "78:26:4",
                   "stateVariable": false,
                   "storageLocation": "memory",
@@ -112,7 +112,7 @@
                   },
                   "typeName": {
                     "baseType": {
-                      "id": 300,
+                      "id": 262,
                       "name": "uint256",
                       "nodeType": "ElementaryTypeName",
                       "src": "78:7:4",
@@ -121,7 +121,7 @@
                         "typeString": "uint256"
                       }
                     },
-                    "id": 301,
+                    "id": 263,
                     "nodeType": "ArrayTypeName",
                     "src": "78:9:4",
                     "typeDescriptions": {
@@ -133,12 +133,12 @@
                 },
                 {
                   "constant": false,
-                  "id": 305,
+                  "id": 267,
                   "mutability": "mutable",
                   "name": "tees",
                   "nameLocation": "123:4:4",
                   "nodeType": "VariableDeclaration",
-                  "scope": 314,
+                  "scope": 276,
                   "src": "106:21:4",
                   "stateVariable": false,
                   "storageLocation": "memory",
@@ -148,7 +148,7 @@
                   },
                   "typeName": {
                     "baseType": {
-                      "id": 303,
+                      "id": 265,
                       "name": "uint256",
                       "nodeType": "ElementaryTypeName",
                       "src": "106:7:4",
@@ -157,7 +157,7 @@
                         "typeString": "uint256"
                       }
                     },
-                    "id": 304,
+                    "id": 266,
                     "nodeType": "ArrayTypeName",
                     "src": "106:9:4",
                     "typeDescriptions": {
@@ -169,12 +169,12 @@
                 },
                 {
                   "constant": false,
-                  "id": 307,
+                  "id": 269,
                   "mutability": "mutable",
                   "name": "seed",
                   "nameLocation": "137:4:4",
                   "nodeType": "VariableDeclaration",
-                  "scope": 314,
+                  "scope": 276,
                   "src": "129:12:4",
                   "stateVariable": false,
                   "storageLocation": "default",
@@ -183,7 +183,7 @@
                     "typeString": "uint256"
                   },
                   "typeName": {
-                    "id": 306,
+                    "id": 268,
                     "name": "uint256",
                     "nodeType": "ElementaryTypeName",
                     "src": "129:7:4",
@@ -196,12 +196,12 @@
                 },
                 {
                   "constant": false,
-                  "id": 309,
+                  "id": 271,
                   "mutability": "mutable",
                   "name": "message",
                   "nameLocation": "151:7:4",
                   "nodeType": "VariableDeclaration",
-                  "scope": 314,
+                  "scope": 276,
                   "src": "143:15:4",
                   "stateVariable": false,
                   "storageLocation": "default",
@@ -210,7 +210,7 @@
                     "typeString": "uint256"
                   },
                   "typeName": {
-                    "id": 308,
+                    "id": 270,
                     "name": "uint256",
                     "nodeType": "ElementaryTypeName",
                     "src": "143:7:4",
@@ -225,17 +225,17 @@
               "src": "76:84:4"
             },
             "returnParameters": {
-              "id": 313,
+              "id": 275,
               "nodeType": "ParameterList",
               "parameters": [
                 {
                   "constant": false,
-                  "id": 312,
+                  "id": 274,
                   "mutability": "mutable",
                   "name": "",
                   "nameLocation": "-1:-1:-1",
                   "nodeType": "VariableDeclaration",
-                  "scope": 314,
+                  "scope": 276,
                   "src": "184:4:4",
                   "stateVariable": false,
                   "storageLocation": "default",
@@ -244,7 +244,7 @@
                     "typeString": "bool"
                   },
                   "typeName": {
-                    "id": 311,
+                    "id": 273,
                     "name": "bool",
                     "nodeType": "ElementaryTypeName",
                     "src": "184:4:4",
@@ -258,14 +258,14 @@
               ],
               "src": "183:6:4"
             },
-            "scope": 315,
+            "scope": 277,
             "src": "61:129:4",
             "stateMutability": "pure",
             "virtual": false,
             "visibility": "external"
           }
         ],
-        "scope": 316,
+        "scope": 278,
         "src": "30:166:4",
         "usedErrors": []
       }
@@ -278,7 +278,7 @@
   },
   "networks": {},
   "schemaVersion": "3.4.12",
-  "updatedAt": "2023-03-01T18:57:00.735Z",
+  "updatedAt": "2023-03-04T19:03:18.487Z",
   "devdoc": {
     "kind": "dev",
     "methods": {},

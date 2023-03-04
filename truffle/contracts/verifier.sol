@@ -1,4 +1,4 @@
-// license: MIT
+// license: UNLICENSED
 
 pragma solidity ^0.8.17;
 
@@ -20,7 +20,7 @@ contract verifier {
 
 
     /**
-    * @dev verify a ring signature, check balances of the provided value and mint an sbt if it is valid
+    * @notice verify a ring signature, check balances of the provided value and mint an sbt if it is valid
     * @param addresses the addresses of the ring (length must be even) (addresses = [key1-x, key1-y, key2-x, key2-y, ..., keyN-x, keyN-y])
     * @param tees the tees of the ring (length must be addresses.length/2) (tees = [tee1, tee2, ..., teeN])
     * @param seed the seed of the ring
@@ -31,7 +31,7 @@ contract verifier {
     * @param verifierData is a string which could be used id the verifier wants to be sure that the sbt has been minted for him (example : his address or somethings he asked the prover to write)
     */
     function verify(uint256[] memory addresses, uint256[] memory tees, uint256 seed, uint256 value, uint256 message, address token, string memory addressesURI, string memory verifierData) public {
-        require(addresses.length % 2 == 0 && tees.length == addresses.length / 2, "Invalid proof");
+        require(addresses.length % 2 == 0 && tees.length == addresses.length / 2, "Invalid Arguments");
         // verify if the message is valid -> int(eth address of the msg.sender) == message
         require(uint160(msg.sender) == message, "Invalid message");
 
@@ -40,19 +40,19 @@ contract verifier {
         
         if(token == address(0)){
             for (uint i = 0; i < addresses.length; i+=2) {
-                require(pointToAddress([addresses[i],addresses[i+1]]).balance >= value, "Insufficient balance in at least one address");
+                require(pointsToAddress([addresses[i],addresses[i+1]]).balance >= value, "Insufficient balance in at least one address");
             }
         }
         else{
             for (uint i = 0; i < addresses.length; i+=2) {
-                require(IERC20(token).balanceOf(pointToAddress([addresses[i],addresses[i+1]])) >= value, "Insufficient balance in at least one address");
+                require(IERC20(token).balanceOf(pointsToAddress([addresses[i],addresses[i+1]])) >= value, "Insufficient balance in at least one address");
             }
         }
 
         bytes32 root = buildRoot(addresses); // build merkle root to save in sbt
 
         // mint sbt
-        _sbt.mint(msg.sender, token, addressesURI, root, message, verifierData);        
+        _sbt.mint(msg.sender, token, value, addressesURI, root, message, verifierData);        
     }
 
 
@@ -60,7 +60,7 @@ contract verifier {
     // merkle tree functions
 
     /**
-    * @dev build root from a list of addresses
+    * @notice build root from a list of addresses
     * @param addresses the addresses to build the merkle tree from
     */
     function buildRoot(uint256[] memory addresses) public pure returns (bytes32) {
@@ -72,7 +72,7 @@ contract verifier {
     }
 
     /**
-    * @dev build root from a list of leaves
+    * @notice build root from a list of leaves
     * @param leaves the leaves to build the merkle tree from
     */
     function buildRootFromLeaves(bytes32[] memory leaves) private pure returns (bytes32) {
@@ -98,7 +98,7 @@ contract verifier {
     }
 
     /**
-    * check if a merkle root is valid
+    * @notice check if a merkle root is valid
     * @param root the root to check
     * @param addresses the addresses to check the root against
     */
@@ -108,10 +108,10 @@ contract verifier {
 
 
     /**
-    * @dev convert a point from SECP256k1 to an ethereum address
+    * @notice convert a point from SECP256k1 to an ethereum address
     * @param points the point to convert -> [x,y]
     */
-    function pointToAddress(uint256[2] memory points) public pure returns (address) {
+    function pointsToAddress(uint256[2] memory points) public pure returns (address) {
         // convert uint256[2] to hex string
         bytes32 x = bytes32(points[0]);
         bytes32 y = bytes32(points[1]);
