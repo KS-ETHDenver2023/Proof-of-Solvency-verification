@@ -29,21 +29,25 @@ npm i @truffle/hdwallet-provider
 ```
 npm i @openzeppelin/contracts
 ```
-6. Setup your .env file in the truffle folder
+6. Set up your .env file in the truffle folder
 ```
 MNEMONIC="Your mnemonic"
 API_KEY="Your infura api key"
 ETHERSCAN="Your etherscan api key"
 ```
-7. Compile using truffle 
+7. Set up the contract addresses
+```
+Set up the SBT and Ring verification addresses
+```
+8. Compile using truffle 
 ```
 truffle compile
 ```
-8. Deploy using truffle 
+9. Deploy using truffle 
 ```
 truffle deploy --network matic
 ```
-9. Verify your contract on etherscan
+10. Verify your contract on etherscan
 ```
 truffle run verify PoS_token --network matic
 ```
