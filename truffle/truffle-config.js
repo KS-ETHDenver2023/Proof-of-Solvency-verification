@@ -61,10 +61,17 @@ module.exports = {
       confirmations: 2,
       timeoutBlocks: 200,
     },
+    matic: {
+      provider: () => new HDWalletProvider(MNEMONIC, 'https://polygon-mainnet.infura.io/v3/' + API_KEY),
+      network_id: 137,
+      confirmations: 2,
+      timeoutBlocks: 200,
+      gas: 4465030,
+      gasPrice: 100000000000,
+    },
     scroll_alpha_testnet: {
       provider: () => new HDWalletProvider(MNEMONIC, 'https://alpha-rpc.scroll.io/l2'),
       network_id: 534353,
-      
     }
 
     //ganache: {
