@@ -79,7 +79,7 @@ Benefits 🛰️:
 
 The purpose of this smart contract is not only to verify the source and validity of the ring signature, but it also verifies that the user's secret address owns the tokens. If all the criteria are met, the smart contract mints a specific SBT for the prover's communication address.
  
- This is all done in the verify function
+ This is all done in the verify function.
 
 ## Technology 💻
 
