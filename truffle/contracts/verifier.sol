@@ -25,16 +25,16 @@ contract verifier {
     * @param tees the tees of the ring (length must be addresses.length/2) (tees = [tee1, tee2, ..., teeN])
     * @param seed the seed of the ring
     * @param value the value to check -> balance of each address must be >= value
-    * @param message the message to verify the ring signature
+    * @param publicAddress the address that has been signed by the ring
     * @param token the token we check the balance of. Null address if we check the balance of the native token
     * @param addressesURI the URI of the addresses on IPFS
     * @param verifierData is a string which could be used id the verifier wants to be sure that the sbt has been minted for him (example : his address or somethings he asked the prover to write)
     */
-    function verify(uint256[] memory addresses, uint256[] memory tees, uint256 seed, uint256 value, uint256 message, address token, string memory addressesURI, string memory verifierData) public {
+    function verify(uint256[] memory addresses, uint256[] memory tees, uint256 seed, uint256 value, address publicAddress, address token, string memory addressesURI, string memory verifierData) public {
         require(addresses.length % 2 == 0 && tees.length == addresses.length / 2, "Invalid Arguments");
         // verify if the message is valid -> int(eth address of the msg.sender) == message
-        require(uint160(msg.sender) == message, "Invalid message");
-
+        require(msg.sender == publicAddress, "Invalid message");
+        uint256 message = uint256(uint160(msg.sender));
         // verify the ring signature
         require(_checkRingSig.Verify(addresses, tees, seed, message), "Invalid ring signature"); // c'est quoi tees et seed ?
         

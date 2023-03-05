@@ -1,6 +1,6 @@
 const HDWalletProvider = require("@truffle/hdwallet-provider");
 require ('dotenv').config();
-const {MNEMONIC, API_KEY, ETHERSCAN} = process.env;
+const {MNEMONIC, API_KEY, ETHERSCAN, POLYGONSCAN} = process.env;
 /**
  * Use this file to configure your truffle project. It's seeded with some
  * common settings for different networks and features like migrations,
@@ -55,13 +55,17 @@ module.exports = {
       gas: 4465030,
       gasPrice: 100000000000,
     },
-    matic: {
-      provider: () => new HDWalletProvider(MNEMONIC, `https://rpc-mumbai.maticvigil.com`),
+    mumbai: {
+      provider: () => new HDWalletProvider(MNEMONIC, 'https://polygon-mumbai.infura.io/v3/' + API_KEY),
       network_id: 80001,
       confirmations: 2,
       timeoutBlocks: 200,
-      skipDryRun: true
     },
+    scroll_alpha_testnet: {
+      provider: () => new HDWalletProvider(MNEMONIC, 'https://alpha-rpc.scroll.io/l2'),
+      network_id: 534353,
+      
+    }
 
     //ganache: {
     //  host: "127.0.0.1",     // Localhost (default: none)
@@ -128,5 +132,6 @@ module.exports = {
   plugins: ['truffle-plugin-verify'],
   api_keys: {
     etherscan: ETHERSCAN,
+    polygonscan: POLYGONSCAN,
   },
 };
